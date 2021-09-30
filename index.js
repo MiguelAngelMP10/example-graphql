@@ -1,10 +1,12 @@
 'use strict'
 
-import { config } from 'dotenv'
-config()
+
+
 
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import express from 'express'
+import dotenv  from "dotenv"
+dotenv.config()
 import { graphqlHTTP } from 'express-graphql'
 
 import { readFileSync } from 'fs'
@@ -13,7 +15,7 @@ import { join } from 'path'
 import resolvers from './lib/resolvers.js'
 
 const app = express()
-const port = process.env.port || 3000
+const port = process.env.PORT || 3000
 
 // definiendo el esquema
 const typeDefs = readFileSync(join('./', 'lib', 'schema.graphql'), 'utf-8')
