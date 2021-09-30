@@ -1,5 +1,8 @@
 'use strict'
 
+import { config } from 'dotenv'
+config()
+
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
