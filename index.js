@@ -1,18 +1,15 @@
 'use strict'
 
-
-
-
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import express from 'express'
-import dotenv  from "dotenv"
-dotenv.config()
+import dotenv from 'dotenv'
 import { graphqlHTTP } from 'express-graphql'
 
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
 import resolvers from './lib/resolvers.js'
+dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3000
