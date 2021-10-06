@@ -3,6 +3,7 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import express from 'express'
 import dotenv from 'dotenv'
+import cors  from 'cors';
 import { graphqlHTTP } from 'express-graphql'
 
 import { readFileSync } from 'fs'
@@ -13,6 +14,11 @@ dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3000
+const isDev = process.env.NODE_ENV !== 'production'
+
+
+app.use(cors())
+
 
 // definiendo el esquema
 const typeDefs = readFileSync(join('./', 'lib', 'schema.graphql'), 'utf-8')
@@ -30,7 +36,7 @@ app.use(
   graphqlHTTP({
     schema: schema,
     rootValue: resolvers,
-    graphiql: true
+    graphiql: isDev
   })
 )
 
